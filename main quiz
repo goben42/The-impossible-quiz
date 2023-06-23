@@ -1,0 +1,172 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+//just showing the base concepts they arent used for much within the program
+struct User{
+    int Attempt;
+    float score;
+    
+    
+};
+class Calculator {
+public:
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int subtract(int a, int b) {
+        return a - b;
+    }
+
+    int multiply(int a, int b) {
+        return a * b;
+    }
+
+    double divide(int a, int b) {
+        if (b != 0) {
+            return static_cast<double>(a) / b;
+        } else {
+            
+        cout<<"Division by zero is not allowed."<<endl;
+        }
+    }
+};
+
+    
+
+
+
+
+
+
+int main()
+{
+   User user;
+   Calculator calc;
+   char tf = 'y';
+   int count = 0;
+   while(tf == 'y'){
+      
+       user.score = 100;
+       count += 1;
+       user.Attempt = count;
+       if (user.Attempt<0){
+           return 0;
+       }
+    cout<<"---------------------"<<endl;
+    cout<<"The Impossible Quiz"<<endl;
+    cout<<"---------------------"<<endl<<endl<<endl;
+    cout<<"Attempt #"<<user.Attempt<<" you have "<<3-user.Attempt<<" remaining."<<endl;
+    
+    cout<<"Question #1:"<<endl;
+    int answer1 = 130;
+    int userinp1;
+    //just showing I can use a pointer there is no practical use for it for my project
+    int* ptr = &userinp1;
+    
+    cout<<"Here is an easy question to start."<<endl<<"What is 15 + 60 * 3 -(50 * 2 - 35)"<<endl;
+    cin>>*ptr;
+    if (*ptr == answer1) {
+        cout << "Correct answer!" << endl;
+    } else {
+        cout << "Sorry, that's not the correct answer." << endl<<endl;
+        user.score -=10;
+    }
+    
+    cout<<"Question #2"<<endl;
+    cout<<"Enter two numbers that multiply into 175"<<endl;
+    int userinp2,userinp2p2,result2;
+    cin>>userinp2;
+    cin>>userinp2p2;
+    result2 = calc.multiply(userinp2,userinp2p2);
+    if (result2 == 175) {
+        cout << "Correct answer!" << endl;
+    } else {
+        cout << "Sorry, that's not the correct answer." << endl<<endl;
+        user.score -= 10;
+    }
+    
+    cout<<"did you cheat and multiply 175 by 1?? (y/n) (answer carefully)"<<endl;
+    char liecheck;
+    while (liecheck != 'y' && liecheck !='n'){
+        cin>>liecheck;
+        switch (liecheck){
+        
+        case 'y':
+        if ((userinp2 != 1 && userinp2p2 != 175) && (userinp2p2 != 1 && userinp2 != 175)){
+            cout<<"LIAR, sorry but we dont let liars take our test re-run the program if your feeling"<<endl<<"a little more honest"<<endl;
+            return 2;
+        }else{
+            cout<<"Im a little disappointed in you but at least you were honest"<<endl;
+            break;
+        }
+        
+        case 'n':
+        if (userinp2 == 1 && userinp2p2 == 175 || userinp2 == 175 && userinp2p2 == 1){
+            cout<<"LIAR, sorry but we dont let liars take our test re-run the program if your feeling"<<endl<<"a little more honest"<<endl;
+            return 2;
+        }else{
+            cout<<"Great you get 5 bonus points for not being lazy"<<endl<<endl;
+            user.score += 5;
+            break;
+        }
+        default:
+        cout<<"please type either y or n"<<endl;
+        }
+    }
+    
+    cout<<"We appreciate the honesty so we will give you some multiple choice questions"<<endl;
+    cout<<"but be carefull because these next 2 are worth 20 points"<<endl<<endl;
+    
+    cout<<"Question #3"<<endl;
+    char answer3;
+    cout<<"Who is the GOAT"<<endl<<"(a)Joseph Mother"<<endl<<"(b)Himothy Johnson"<<endl<<"(c)jesus(not the biblical one)"<<endl<<"(d)none of the above"<<endl;
+    cout<<"answer with a b c or d"<<endl;
+    cin >> answer3;
+    if (answer3 == 'd') {
+        cout << "Correct answer! thats right im the GOAT." << endl;
+    } else {
+        cout << "Sorry, that's not the correct answer. good guess though" << endl<<endl;
+        user.score -=20;
+    }
+    
+    cout<<"Last 2 questions you need at least a 70 to pass and your current score is-"<<user.score<<endl;
+    
+    cout<<"Question #4"<<endl;
+    cout<<"How much wood could a wood chuck, chuck if he was given the ability to chuck wood"<<endl;
+    cout<<"(a)none of the wood"<<endl<<"(b)some of the wood"<<endl<<"(c)most of the wood"<<endl<<"(d)all of the wood"<<endl;
+    char answer4;
+    cin>>answer4;
+    if (answer4 == 'b') {
+        cout << "Correct answer! it would likely start chucking the wood then get tired" << endl;
+    } else {
+        cout << "Sorry, that's not the correct answer. if you were givin the ability to chuck wood"<<endl<<"you would at least chuck some but there is too much wood in this world for c or d to be plausible" << endl<<endl;
+        user.score -=20;
+    }
+    
+    cout<<"And finally the last question watch out its worth 30 points"<<endl<<endl;
+    cout<<"Question #5"<<endl;
+    cout<<"What is the meaning of life"<<endl;
+    char meaning[7];
+    cin>>meaning;
+    if (strcmp(meaning, "nothing")== 0) {
+        cout << "Correct answer!, somehow??" << endl;
+    } else {
+        cout << "Sorry, that's not the correct answer. "<< endl<<endl;
+        user.score -=30;
+    }
+    cout<<"your final score is "<<user.score<<endl;
+    if (user.score > 70){
+        for (int i =0; i<10;i++){
+            cout<<"----------------------"<<endl;
+            cout<<"      Congrats!!!!!";
+            
+        }
+        return 0;
+    }else {
+        cout<<"Sorry but you have failed would you like to try again?? y/n"<<endl;
+        cin>> tf;
+    }
+}
+return 0;
+}   
